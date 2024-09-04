@@ -35,7 +35,7 @@ export default function Signup() {
     else{
       setIsLoading(true)
       try {
-        const res = await axios.post("https://kadan.onrender.com/api/register", {
+        const res = await axios.post("https://backend.accosmart.com.ng/api/auth/register", {
           name,
           email,
           password,

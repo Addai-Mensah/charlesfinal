@@ -83,6 +83,7 @@ function Updateadmin() {
                 {
                     headers: {
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJiYWJhcm9zc2EiLCJpYXQiOjE3MjQxNjAyMDgsImV4cCI6MTcyNDE2MzgwOH0.ya1Ib9w91SXeqOtgNP1KiTOXZR2ycaV1egtNlA2-2Ls`,
+                        "Content-Type": "application/json",
                     },
                 }
             );

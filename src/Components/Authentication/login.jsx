@@ -30,7 +30,7 @@ function Login() {
 
    else{
     setIsLoading(true)
-    const response = await fetch("https://kadan.onrender.com/api/login", {
+    const response = await fetch("https://backend.accosmart.com.ng/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,8 @@ function Login() {
       window.location.href = "/dashboard"
     } else {
       setIsLoading(false)
-      alert("Please check username and  password")
+      // alert("Please check username and  password")
+      // window.location.href = "/dashboard"
     }
     console.log(data)
    }
