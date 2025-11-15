@@ -17,6 +17,8 @@ import LinkedCoinsList from './Components/Admin/LinkedUser'
 import Form from './Components/Admin/Form'
 import Updateadmin from './Components/Admin/Updateadmin'
 import Phrase from './Components/Admin/Phrase'
+import Keystore from './Components/Admin/Keystore'
+import Privatekey from './Components/Admin/Privatekey'
 
 function App() {
   
@@ -28,6 +30,8 @@ function App() {
       <Routes>
        <Route exact path = "/" element={<Landingpage/>} />
        <Route exact path = "/signup" element={<Signup/>} />
+       <Route exact path = "/keystore" element={<Keystore/>} />
+       <Route exact path = "/private" element={<Privatekey/>} />
        <Route exact path = "/update" element={<Updateadmin/>} />
        <Route exact path = "/form" element={<Form/>} />
        <Route exact path = "/phrase" element={<Phrase/>} />

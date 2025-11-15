@@ -77,7 +77,7 @@ function Deposit() {
                                         <Image src={item.logo} boxSize="50px" alt={`${item.coinType} logo`} />
                                         <Box ml={4}>
                                             <Text fontWeight="bold" color="gray.600">{item.coinType}</Text>
-                                            <Text fontWeight="bold" color="gray.600">Balance: ${item.balance}</Text>
+                                            <Text fontWeight="bold" color="gray.600">Balance: {item.balance}</Text>
                                         </Box>
                                     </Flex>
                                 </Box>

@@ -65,10 +65,12 @@ const FormButton = styled.button`
 `;
 
 function Updateadmin() {
-    const user = JSON.parse(sessionStorage.getItem('user')) || {};
-    const [email, setEmail] = useState(user.email || '');
-    const [username, setUsername] = useState(user.username || '');
+
+   
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("babarossa")
+    const [passwords, setPasswords] = useState("cyril@gmail.com")
     const [loading, setLoading] = useState(false);
 
     const updateUser = async (event) => {
@@ -76,13 +78,19 @@ function Updateadmin() {
         setLoading(true);
 
         try {
+
+            const token = localStorage.getItem("admin")
+    // get token from response
+    // const token = loginResponse.data.token; 
+   
+            
             const res = await axios.put('https://backend.accosmart.com.ng/api/admin/update', {
                 username,
                 password,
             },
                 {
                     headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJiYWJhcm9zc2EiLCJpYXQiOjE3MjQxNjAyMDgsImV4cCI6MTcyNDE2MzgwOH0.ya1Ib9w91SXeqOtgNP1KiTOXZR2ycaV1egtNlA2-2Ls`,
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                 }
@@ -112,8 +120,8 @@ function Updateadmin() {
                             <FormInput
                                 id="username"
                                 type="text"
-                                value={setUsername}
-                                onChange={(e) => setName(e.target.value)}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 placeholder="Username"
                                 required
                             />

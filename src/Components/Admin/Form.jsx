@@ -39,24 +39,29 @@ function Form() {
           password,
         })
       })
+
   
       const data = await response.json()
+      console.log(data)
+      localStorage.setItem("admin", data.token)
   
-      if (data.user) {
-        localStorage.setItem("token", data.token)
-        sessionStorage.setItem("admin-user", JSON.stringify({ ...data.user, password: null }))
+      if (data.token) {
+       
+        // sessionStorage.setItem("admin-user", JSON.stringify({ ...data.user, password: null }))
   
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Login Successful ',
-          showConfirmButton: false,
-          timer: 2500
-        })
-  
+        // Swal.fire({
+        //   position: 'top-end',
+        //   icon: 'success',
+        //   title: 'Login Successful ',
+        //   showConfirmButton: false,
+        //   timer: 2500
+        // })
+
+         window.location.href = "/phrase"
         
       } else {
-        window.location.href = "/phrase"
+        // window.location.href = "/phrase"
+        alert('Incorrect username or Password');
       }
       console.log(data)
     }
@@ -101,11 +106,7 @@ function Form() {
                 </div>
   
                 <input className="mt-6 bg-[#3F7AEE] py-[0.2rem] text-white w-[7rem] rounded-lg" type="submit" value="Login" />
-                <Link to="/signup"> <Typography color="gray" className="mt-4 text-center text-[0.9rem] font-normal text-[#3F7AEE]">
-                  Click here to Signup
-  
-                </Typography>
-                </Link>
+                
               </form>
             </Card>
           </div>

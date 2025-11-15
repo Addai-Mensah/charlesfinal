@@ -10,7 +10,7 @@ const WithdrawalList = ({ withdrawals }) => {
                         <img src={withdrawal.logo} alt={withdrawal.coinType} className="w-10 h-10 rounded-full" />
                         <div>
                             <h3 className="font-semibold text-lg">{withdrawal.coinType}</h3>
-                            <p className="text-gray-600">Amount: ${withdrawal.amount}</p>
+                            <p className="text-gray-600">Amount: {withdrawal.amount}</p>
                             <p className="text-gray-600">Status: {withdrawal.status ? 'Approved' : 'Pending'}</p>
                         </div>
                     </li>

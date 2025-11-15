@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   const Menus = [
     { title: "Dashboard", icon: FiHome, path: "/dashboard" },
-    { title: "Link Wallet", icon: FiUser, path: "/ledger" },
+    { title: "Link Wallet/File", icon: FiUser, path: "/ledger" },
     { title: "Deposit",  icon: FiBarChart, path: "/deposit" },
     { title: "Settings", icon: FiSettings, path: "/settings" },
     { href: "/withdrawal", label: "Withdraw Money" },

@@ -30,7 +30,7 @@ function Login() {
 
    else{
     setIsLoading(true)
-    const response = await fetch("https://backend.accosmart.com.ng/api/auth/login", {
+    const response = await fetch("https://kadan.onrender.com/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
